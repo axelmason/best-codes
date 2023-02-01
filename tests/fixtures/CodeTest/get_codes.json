@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "code": "#TestCode",
+        "title": "TestTitle",
+        "description": "TestDescription",
+        "activate_url": "test_url.com",
+        "views_count": 0,
+        "usages_count": 0,
+        "created_at": null,
+        "updated_at": null,
+        "users": []
+    },
+    {
+        "id": 2,
+        "code": "#TestCode",
+        "title": "TestTitle",
+        "description": "TestDescription",
+        "activate_url": "test_url.com",
+        "views_count": 0,
+        "usages_count": 0,
+        "created_at": null,
+        "updated_at": null,
+        "users": []
+    }
+]
