@@ -1,7 +1,7 @@
 <template>
-    <button class="btn btn-white" @click="(modalOpen = !modalOpen)">Login</button>
+    <button class="btn btn-white" @click="(modalOpen = !modalOpen)">Войти</button>
     <show-modal
-    title="Login"
+    title="Логин"
     :show="modalOpen"
     :fields="fields"
     :errors="errors"
@@ -20,11 +20,11 @@ import Modal from '../elements/Modal.vue';
                 modalOpen: false,
                 fields: {
                     email: {
-                        name: 'Email',
+                        name: 'Почта',
                         required: true
                     },
                     password: {
-                        name: 'Password',
+                        name: 'Пароль',
                         required: true
                     },
                 },

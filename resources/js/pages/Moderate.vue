@@ -7,7 +7,7 @@
         </ul>
 
         <div class="tab-content" v-if="tab && $store.state.renderComponent">
-            <button class="btn btn-primary mb-1" @click="$store.commit('forceRender')">Reload</button>
+            <button class="btn btn-primary mb-1" @click="$store.commit('forceRender')">Перезагрузить</button>
             <moderate-tab v-if="tab === 1" />
         </div>
     </div>

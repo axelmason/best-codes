@@ -37,7 +37,7 @@
                 <button type="submit" class="btn btn-primary">Отправить</button>
             </form>
         </div>
-        <div class="box p-4 h-[400px] pb-[3em]" :class="{hidden: display === 'form' && windowWidth < 1024}">
+        <div class="box p-4 h-[1000px] pb-[3em]" :class="{hidden: display === 'form' && windowWidth < 1024}">
             <div class="flex justify-between">
                 <h1>Превью</h1>
                 <button class="btn btn-primary" @click="display = 'form'" v-if="windowWidth < 1024">Форма</button>
