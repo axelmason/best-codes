@@ -9,6 +9,10 @@ input {
     }
 }
 
+body {
+    background-color: #F5F5F5;
+}
+
 .la {
     font-family: 'Line Awesome Free'!important;
 }
@@ -139,11 +143,11 @@ form {
 .search-form {
     display: flex;
     input {
-        @apply px-4 py-2 rounded-l-lg;
+        @apply px-4 py-2 rounded-l-2xl;
     }
 
     button {
-        @apply rounded-none rounded-r-lg;
+        @apply rounded-none rounded-r-2xl;
 
         img {
             width: 30px;

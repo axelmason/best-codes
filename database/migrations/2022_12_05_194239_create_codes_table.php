@@ -17,13 +17,18 @@ return new class extends Migration
             $table->id();
             $table->string('image')->default('default.png');
 
+            $table->integer('shop_id');
             $table->string('code');
             $table->string('title');
-            $table->text('description');
-            $table->string('activate_url');
+            $table->text('description')->nullable();
 
             $table->integer('views_count')->default(0);
             $table->integer('usages_count')->default(0);
+            $table->enum('type', ['code', 'promo', 'other'])->default('code');
+            # TODO: Реализовать функционал
+            $table->integer('rating')->default(0);
+
+            $table->timestamp('end_date')->nullable();
 
             $table->integer('user_id');
             $table->integer('moderator_id')->nullable();

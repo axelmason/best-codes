@@ -16,7 +16,7 @@ class HomeController extends Controller
     }
 
     public function search(Request $r) {
-        $search = trim($r->input('search'));
+        $search = trim($r->input('query'));
         $fields = ['code', 'title', 'description'];
         $codes = Code::query();
         foreach ($fields as $field) {

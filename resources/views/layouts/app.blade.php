@@ -15,15 +15,16 @@
 </head>
 <body>
     <div id="app">
-        <header class="w-full bg-[#4B5A93] py-3">
+        <header class="w-full bg-primary py-3">
             <div class="grid xl:grid-cols-3 md:grid-cols-1 justify-items-center font-roboto items-center">
-                <a href="{{ route('home') }}"><img src="{{ asset('logo.svg') }}" alt=""></a>
+                <a href="{{ route('home') }}" class="font-roboto text-white uppercase text-2xl font-black">bestcodes</a>
                 <form action="{{ route('search') }}" method="get" class="xl:w-full max-xl:justify-items-center search-form flex max-xl:mt-2">
-                    <input type="text" class="w-full" name="search" id="search">
-                    <button type="submit" class="btn btn-white"><img src="{{ asset('loupe.svg') }}" alt=""></button>
+                    <input type="text" class="w-full" name="query" id="query" placeholder="Название магазина">
+                    <button type="submit" class="btn btn-white"><img class="max-w-[22px]" src="{{ asset('loupe.svg') }}" alt=""></button>
                 </form>
                 <button class="xl:hidden burger-btn" onclick="toggleMenu(this);"><i class="las la-bars"></i></button>
-                <div class="flex max-xl:hidden max-xl:flex-col items-center" id="menu">
+                <div class="flex max-xl:hidden max-xl:flex-col items-center w-full xl:justify-evenly" id="menu">
+                    <header-shops></header-shops>
                     @auth
                     <notifications></notifications>
                     @endauth

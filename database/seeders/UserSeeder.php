@@ -3,9 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -16,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        echo "\n\tAdmin password is 123\n\n";
+        echo "\nAdmin password is 123\n\n";
 
         User::create([
             'name' => 'admin',

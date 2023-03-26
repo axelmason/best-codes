@@ -13,7 +13,6 @@ class Code extends Model
         'code',
         'title',
         'description',
-        'activate_url',
         'views_count',
         'usages_count',
         'moderate_status',
@@ -25,5 +24,10 @@ class Code extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class);
     }
 }

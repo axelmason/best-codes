@@ -9,6 +9,9 @@ module.exports = {
     extend: {
         fontFamily: {
             'roboto': ['Roboto', 'sans-serif']
+        },
+        colors: {
+            'primary': '#D61C4E'
         }
     },
   },

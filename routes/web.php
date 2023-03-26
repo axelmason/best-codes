@@ -6,10 +6,16 @@ use App\Http\Controllers\ModerateController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
+
+Route::get('/shops/top', [ShopController::class, 'top']);
+Route::get('/shop/{shop_id}', [ShopController::class, 'get']);
+Route::get('/shop/{shop_id}/related', [ShopController::class, 'getRelated']);
+
 Route::get('code/{code_id}', [CodeController::class, 'details'])->name('details');
 Route::put('code/{code_id}/viewed', [CodeController::class, 'viewed']);
 Route::get('/notifications', [NotificationController::class, 'get']);

@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Code;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class CodeSeeder extends Seeder
 {
@@ -16,6 +16,21 @@ class CodeSeeder extends Seeder
      */
     public function run()
     {
-        Code::factory(5)->create();
+        $values = [];
+        $types = ['code', 'promo', 'other'];
+
+        for ($i=0; $i < 300; $i++) {
+            $values[] = [
+                'image' => 'default.png',
+                'shop_id' => Shop::all()->random()->id,
+                'code' => '#'.fake()->text(10),
+                'title' => fake()->text(30),
+                'description' => fake()->realText(300),
+                'type' => $types[array_rand($types)],
+                'user_id' => User::all()->random()->id
+            ];
+        }
+
+        Code::insert($values);
     }
 }
