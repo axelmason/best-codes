@@ -3,27 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Code;
-use App\Models\UserCode;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $codes = Code::where('moderate_status', 'accepted')->get();
-
-        return view('home', compact('codes'));
+        $shops = Shop::with('type')->get();
+        $top_codes = Code::query()->orderBy('rating')->limit(12)->get();
+        return view('home', compact('shops', 'top_codes'));
     }
 
     public function search(Request $r) {
         $search = trim($r->input('query'));
-        $fields = ['code', 'title', 'description'];
-        $codes = Code::query();
-        foreach ($fields as $field) {
-            $codes->orWhere($field, 'LIKE', "%{$search}%");
-        }
-        $codes = $codes->get()->where('moderate_status', 'accepted');
+        $shops = Shop::query()->with('type')->where('name', 'LIKE', "%{$search}%")->get();
 
-        return view('home', compact('codes'));
+        return view('home', compact('shops'));
     }
 }

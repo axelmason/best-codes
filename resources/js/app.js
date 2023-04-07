@@ -20,7 +20,7 @@ import Modal from './elements/Modal.vue'
 import EditModal from './elements/EditModal.vue'
 import DeleteModal from './elements/DeleteModal.vue'
 import Loader from './elements/Loader.vue'
-import CodeCard from './elements/CodeCard.vue'
+import ShopCard from './elements/ShopCard.vue'
 import Notifications from './elements/Notifications.vue'
 import Alert from './elements/Alert.vue'
 import PromocodesList from './elements/PromocodesList.vue'
@@ -49,7 +49,7 @@ app.component('show-modal', Modal);
 app.component('edit-modal', EditModal);
 app.component('delete-modal', DeleteModal);
 app.component('loader', Loader);
-app.component('code-card', CodeCard);
+app.component('shop-card', ShopCard);
 app.component('notifications', Notifications);
 app.component('alert', Alert);
 app.component('promocodes-list', PromocodesList);

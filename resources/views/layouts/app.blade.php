@@ -41,14 +41,13 @@
                                 @csrf
                                 <button class="btn btn-white w-full" type="submit">Выйти</button>
                             </form>
-                        @endauth
+                        @else
 
-                        @guest
                         <div class="flex lg:flex-col lg:space-x-0 lg:space-y-2 max-lg:space-x-2 max-lg:mt-2">
                             <login-modal></login-modal>
                             <register-modal></register-modal>
                         </div>
-                        @endguest
+                        @endauth
                     </div>
                 </div>
             </div>

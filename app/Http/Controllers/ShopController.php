@@ -13,9 +13,9 @@ class ShopController extends Controller
         return response()->json(compact('shops'), 200);
     }
 
-    public function get($shopId)
+    public function get($shopAlias)
     {
-        $shop = Shop::with(['codes'])->findOrFail($shopId);
+        $shop = Shop::with(['codes'])->where('alias', $shopAlias)->first();
         $related = $shop->related();
         return view('shop', compact('shop', 'related'));
     }

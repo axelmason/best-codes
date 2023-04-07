@@ -4,6 +4,6 @@
 
 @section('content')
     <div class="container mx-auto">
-        <home-page :codes="{{ json_encode($codes) }}"></home-page>
+        <home-page :shops="{{ json_encode($shops) }}" :top-codes="{{ json_encode($top_codes??null) }}"></home-page>
     </div>
 @endsection

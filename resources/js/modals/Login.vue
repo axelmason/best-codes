@@ -5,9 +5,14 @@
     :show="modalOpen"
     :fields="fields"
     :errors="errors"
+    button-text="Войти"
     @close="modalOpen = !modalOpen"
     @onSubmit="submit"
-    ></show-modal>
+    >
+    <template v-slot:extra>
+            <span>Ещё не зарегистрированны? <a href="" class="text-primary">Регистрация</a></span>
+        </template>
+    </show-modal>
 </template>
 
 <script>
@@ -21,10 +26,12 @@ import Modal from '../elements/Modal.vue';
                 fields: {
                     email: {
                         name: 'Почта',
+                        type: 'email',
                         required: true
                     },
                     password: {
                         name: 'Пароль',
+                        type: 'password',
                         required: true
                     },
                 },

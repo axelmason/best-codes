@@ -2,12 +2,18 @@
     <button class="btn btn-white" @click="(modalOpen = !modalOpen)">Регистрация</button>
     <show-modal
     title="Регистрация"
+    promotion
     :show="modalOpen"
     :fields="fields"
     :errors="errors"
+    button-text="Зарегистрироваться"
     @close="modalOpen = !modalOpen"
     @onSubmit="submit"
-    ></show-modal>
+    >
+        <template v-slot:extra>
+            <span>Уже зарегистрированны? <a href="" class="text-primary">Войти</a></span>
+        </template>
+    </show-modal>
 </template>
 
 <script>
@@ -21,15 +27,23 @@ import Modal from '../elements/Modal.vue';
                 fields: {
                     name: {
                         name: 'Имя',
+                        type: 'text',
+                        required: true
                     },
                     login: {
                         name: 'Логин',
+                        type: 'text',
+                        required: true
                     },
                     email: {
                         name: 'Почта',
+                        type: 'email',
+                        required: true
                     },
                     password: {
                         name: 'Пароль',
+                        type: 'password',
+                        required: true
                     },
                 },
                 errors: {}

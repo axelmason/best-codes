@@ -13,7 +13,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 Route::get('/shops/top', [ShopController::class, 'top']);
-Route::get('/shop/{shop_id}', [ShopController::class, 'get']);
+Route::get('/shop/{shop_alias}', [ShopController::class, 'get']);
 Route::get('/shop/{shop_id}/related', [ShopController::class, 'getRelated']);
 
 Route::get('code/{code_id}', [CodeController::class, 'details'])->name('details');

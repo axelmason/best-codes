@@ -14,15 +14,14 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        $values = [];
-        $types = ['shop', 'delivery', 'service', 'product', 'food'];
+        $types = [
+            ['title' => 'Магазин', 'alias' => 'shop'],
+            ['title' => 'Доставка', 'alias' => 'delivery'],
+            ['title' => 'Сервис', 'alias' => 'service'],
+            ['title' => 'Продукт', 'alias' => 'product'],
+            ['title' => 'Еда', 'alias' => 'food'],
+        ];
 
-        foreach ($types as $type) {
-            $values[] = [
-                'title' => $type
-            ];
-        }
-
-        ShopType::insert($values);
+        ShopType::insert($types);
     }
 }

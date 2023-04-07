@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Shop;
 use App\Models\ShopType;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ShopSeeder extends Seeder
 {
@@ -16,11 +17,14 @@ class ShopSeeder extends Seeder
     public function run()
     {
         $values = [];
+        $shopImages = array_diff(scandir(__DIR__ . '/images/codes'), array('..', '.'));
 
-        for ($i=0; $i < 50; $i++) {
+        foreach ($shopImages as $image) {
+            $name = fake()->word();
             $values[] = [
-                'name' => fake()->word(),
-                'image' => 'default.png',
+                'name' => $name,
+                'alias' => Str::slug($name),
+                'image' => $image,
                 'top' => fake()->boolean(),
                 'url' => fake()->url(),
                 'description' => fake()->text(300),

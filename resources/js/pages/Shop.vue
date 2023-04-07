@@ -13,7 +13,7 @@
                 <div class="flex flex-col">
                     <h3 class="font-medium" style="font-size: 24px;">Похожие магазины</h3>
                     <div class="related-shops w-full flex flex-wrap gap-3">
-                        <a class="related-item bg-white px-7 py-2.5 rounded" :href="'/shop/'+item.id" v-for="item in related">{{ item.name }}</a>
+                        <a class="related-item bg-white px-7 py-2.5 rounded" :href="'/shop/'+item.alias" v-for="item in related">{{ item.name }}</a>
                     </div>
                 </div>
             </div>
