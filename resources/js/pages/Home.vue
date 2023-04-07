@@ -13,7 +13,7 @@
                     <a href="#" class="bg-primary px-5 py-2 text-white rounded-2xl">Открыть промокод</a>
                 </div>
             </div>
-            <div class="d-flex flex-col">
+            <div class="flex flex-col gap-y-3">
                 <div id="how-it-works" class="bg-white rounded-xl px-12 py-10 relative" style="z-index: -20">
                     <div class="how-img-wrapper absolute right-0 top-0" style="z-index: -10">
                         <img src="@/assets/img/help_outline_black.svg" alt="" />
