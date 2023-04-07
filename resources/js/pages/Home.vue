@@ -16,14 +16,14 @@
             <div class="d-flex flex-col">
                 <div id="how-it-works" class="bg-white rounded-xl px-12 py-10 relative" style="z-index: -20">
                     <div class="how-img-wrapper absolute right-0 top-0" style="z-index: -10">
-                        <img src="/help_outline_black.svg" alt="" />
+                        <img src="@/assets/img/help_outline_black.svg" alt="" />
                     </div>
                     <div class="how-it-works-text z-20 text-[#505050]">
                         <h3 class="text-2xl font-medium mb-7">Как это работает?</h3>
                         <div class="flex flex-col gap-y-7">
                             <div class="item flex flex-col gap-y-1">
                                 <div class="item-title flex gap-x-2">
-                                    <span class="item-img-wrapper"><img src="/loupe.svg" alt="" /></span>
+                                    <span class="item-img-wrapper"><img src="@/assets/img/loupe.svg" alt="" /></span>
                                     <span>Найдите магазин</span>
                                 </div>
                                 <div class="item-text">
@@ -33,7 +33,7 @@
                             </div>
                             <div class="item flex flex-col gap-y-1">
                                 <div class="item-title flex gap-x-2">
-                                    <span class="item-img-wrapper"><img src="/coupon.svg" alt="" /></span>
+                                    <span class="item-img-wrapper"><img src="@/assets/img/coupon.svg" alt="" /></span>
                                     <span>Заберите промокод</span>
                                 </div>
                                 <div class="item-text">
@@ -44,7 +44,7 @@
                             </div>
                             <div class="item flex flex-col gap-y-1">
                                 <div class="item-title flex gap-x-2">
-                                    <span class="item-img-wrapper"><img src="/ticksquare.svg" alt="" /></span>
+                                    <span class="item-img-wrapper"><img src="@/assets/img/ticksquare.svg" alt="" /></span>
                                     <span>Используйте промокод</span>
                                 </div>
                                 <div class="item-text">

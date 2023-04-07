@@ -61,7 +61,7 @@ export default {
 .suggest-button {
     display: flex;
     &::before {
-        content: url(/plus.svg);
+        content: url(@/assets/img/plus.svg);
         // margin-right: 5px;
     }
 }
