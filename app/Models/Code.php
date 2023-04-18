@@ -18,7 +18,8 @@ class Code extends Model
         'moderate_status',
         'moderate_message',
         'moderator_id',
-        'user_id'
+        'user_id',
+        'shop_id'
     ];
 
     public function user()

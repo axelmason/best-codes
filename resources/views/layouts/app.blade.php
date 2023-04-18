@@ -17,7 +17,7 @@
     <div id="app">
         <header class="w-full bg-primary py-3">
             <div class="grid xl:grid-cols-3 md:grid-cols-1 justify-items-center font-roboto items-center">
-                <a href="{{ route('home') }}" class="font-roboto text-white uppercase text-2xl font-black">bestcodes</a>
+                <a href="{{ route('home') }}" class="font-roboto text-white uppercase text-2xl font-black">{{ config('app.name') }}</a>
                 <form action="{{ route('search') }}" method="get" class="xl:w-full max-xl:justify-items-center search-form flex max-xl:mt-2">
                     <input type="text" class="w-full" name="query" id="query" placeholder="Название магазина">
                     <button type="submit" class="btn btn-white"><img class="max-w-[22px]" src="{{ asset('loupe.svg') }}" alt=""></button>
@@ -28,13 +28,10 @@
                     @auth
                     <notifications></notifications>
                     @endauth
-                    <div class="grid lg:grid-cols-2 grid-cols-1 gap-2 max-lg:mt-2">
+                    <div class="grid xl:grid-cols-2 grid-cols-1 gap-2 max-lg:mt-2">
                         @auth
-                            @role(['admin'])
-                                <a class="btn btn-white" href="{{ route('admin') }}">Admin</a>
-                            @endrole
                             @role(['admin', 'moderator'])
-                                <a class="btn btn-white" href="{{ route('moderate') }}">Moderate</a>
+                                <a class="btn btn-white" href="{{ route('dashboard.index') }}">Admin</a>
                             @endrole
                             <a href="{{ route('suggest')  }}" class="btn btn-white">Предложить код</a>
                             <form action="{{ route('logout') }}" method="post">
@@ -43,7 +40,7 @@
                             </form>
                         @else
 
-                        <div class="flex lg:flex-col lg:space-x-0 lg:space-y-2 max-lg:space-x-2 max-lg:mt-2">
+                        <div class="flex xl:flex-col xl:space-x-0 xl:space-y-2 max-xl:space-x-2 max-xl:mt-2">
                             <login-modal></login-modal>
                             <register-modal></register-modal>
                         </div>

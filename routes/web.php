@@ -32,13 +32,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/suggest', [CodeController::class, 'suggestPage'])->name('suggest');
 });
 
-Route::middleware('role:admin')->group(function () {
-    Route::get('admin', [AdminController::class, 'index'])->name('admin');
+Route::middleware(['role:admin,moderator'])->prefix('dashboard')->name('dashboard.')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('codes/page', [CodeController::class, 'adminPage'])->name('codes.adminPage');
 });
 
 Route::middleware('role:admin,moderator')->group(function () {
     Route::resource('codes', CodeController::class);
     Route::get('moderate', [ModerateController::class, 'index'])->name('moderate');
-    Route::get('moderate/open/{code_id}', [ModerateController::class, 'open'])->name('open');
-    Route::put('moderate/{code_id}/edit', [ModerateController::class, 'update']);
+    // Route::get('moderate/open/{code_id}', [ModerateController::class, 'open'])->name('open');
+    // Route::put('moderate/{code_id}/edit', [ModerateController::class, 'update']);
+
+    Route::get('/shops/list', [ShopController::class, 'list']);
 });
+

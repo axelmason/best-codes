@@ -1,6 +1,6 @@
 <template>
     <transition name="fade">
-        <div class="modal-wrapper" @click="$emit('close')" v-if="show">
+        <div class="modal-wrapper z-50" @click="$emit('close')" v-if="show">
             <div class="modal" @click.stop>
                 <div class="flex max-lg:flex-col">
                     <div class="lg:rounded-l max-lg:rounded-t promotion bg-gradient-to-br from-primary to-[#FF5F6D] flex flex-1 flex-col py-5 px-10"
