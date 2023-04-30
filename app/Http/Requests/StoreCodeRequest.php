@@ -18,8 +18,7 @@ class StoreCodeRequest extends FormRequest
         return [
             'code'          => 'required|string',
             'title'         => 'required|string',
-            'description'   => 'required|string',
-            'activate_url'  => 'required|string'
+            'description'   => 'sometimes|string'
         ];
     }
 

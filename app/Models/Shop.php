@@ -9,7 +9,7 @@ class Shop extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'image', 'top', 'description', 'url', 'type'];
+    protected $fillable = ['name', 'image', 'alias', 'top', 'description', 'url', 'type_id'];
 
     public function codes()
     {

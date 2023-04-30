@@ -2,6 +2,7 @@
     <button class="btn btn-white" @click="(modalOpen = !modalOpen)">Войти</button>
     <show-modal
     title="Логин"
+    promotion
     :show="modalOpen"
     :fields="fields"
     :errors="errors"

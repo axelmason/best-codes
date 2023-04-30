@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function index()
     {
         $shops = Shop::with('type')->get();
-        $top_codes = Code::query()->orderBy('rating')->limit(12)->get();
+        $top_codes = Code::query()->with('images')->orderBy('rating')->limit(12)->get();
         return view('home', compact('shops', 'top_codes'));
     }
 

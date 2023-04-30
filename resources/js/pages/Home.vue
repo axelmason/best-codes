@@ -1,17 +1,22 @@
 <template>
-    <div class="mt-24">
-        <div class="grid grid-cols-3 gap-4">
-            <div class="top-codes col-span-2 grid grid-cols-4 row-span-2 gap-4">
-                <div class="top-item py-1 px-4 text-sm flex flex-col items-center bg-white rounded-xl border-[#E2E2E2]"
+    <div class="mt-20">
+        <div class="grid max-lg:grid-cols-1 grid-cols-3 gap-4">
+            <div v-if="!!topCodes" class="col-span-2 grid max-xl:grid-cols-2 max-md:grid-cols-1 grid-cols-4 row-span-2 gap-4">
+                <div
+                    class="relative top-item py-1 max-md:mx-4 px-4 text-sm flex flex-col items-center bg-white rounded-xl border-[#E2E2E2]"
                     v-for="code in topCodes">
                     <div class="img-wrapper">
-                        <img :src="getImage(code.image)" @error="brokenImage" />
+                        <img :src="getImage(code.images[0]?.['path'])" @error="brokenImage" />
                     </div>
-                    <p style="color: #505050" class="font-normal py-3">
+                    <p style="color: #505050" class="font-normal py-3 max-xl:mb-12">
                         {{ code.title }}
                     </p>
-                    <a href="#" class="bg-primary px-5 py-2 text-white rounded-2xl">Открыть промокод</a>
+                    <a :href="'/code/'+code.id" class="bg-primary px-5 py-2 text-white rounded-2xl absolute bottom-3">Открыть<span
+                            class="max-xl:hidden"> промокод</span></a>
                 </div>
+            </div>
+            <div v-else class="col-span-2 grid lg:grid-cols-2 max-md:grid-cols-1 gap-5">
+                <shop-card v-for="shop in shops" horizont :shop="shop" />
             </div>
             <div class="flex flex-col gap-y-3">
                 <div id="how-it-works" class="bg-white rounded-xl px-12 py-10 relative" style="z-index: -20">
@@ -66,9 +71,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="code-cards flex flex-col">
-            <shop-card v-for="shop in shops" :shop="shop"></shop-card>
+            <h2 class="col-span-full mt-5 font-bold text-4xl">Список магазинов</h2>
+            <div v-if="!!topCodes" class="code-cards mt-3 col-start-1 col-end-3">
+                <shop-card v-for="shop in shops" :shop="shop"></shop-card>
+            </div>
         </div>
     </div>
 </template>
@@ -91,7 +97,7 @@ export default {
         getImage(img) {
             try {
                 return img
-                    ? "/storage/images/" + img
+                    ? "/storage/" + img
                     : "/storage/images/default.png";
             } catch (e) {
                 console.log(e);
@@ -110,11 +116,18 @@ export default {
 }
 
 .code-cards {
-    @apply grid xl:grid-cols-4 lg:grid-cols-2 gap-5 justify-center items-center w-full;
+    @apply grid xl:grid-cols-4 lg:grid-cols-4 gap-5 justify-center items-center;
 }
 
 .img-wrapper {
+    max-height: 150px;
     width: 200px;
+    display: flex;
+    justify-content: center;
+    object-fit: contain;
+    img {
+        height: 100%;
+    }
 }
 
 .item-title {
