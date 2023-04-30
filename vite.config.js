@@ -6,8 +6,9 @@ export default defineConfig({
     plugins: [
         vue({
             template: {
-                compilerOptions: {
-                    // isCustomElement: (tag) => tag.includes('-')
+                transformAssetUrls: {
+                    base: null,
+                    includeAbsolute: false
                 }
             }
         }),
