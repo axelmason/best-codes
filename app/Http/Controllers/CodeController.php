@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCodeRequest;
 use App\Http\Requests\UpdateCodeRequest;
+use App\Models\Image;
 use App\Models\Shop;
 use App\Services\CodeService;
 use App\Models\Code;
+use Exception;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -48,13 +50,13 @@ class CodeController extends Controller
         return response()->json($result);
     }
 
-    public function update(UpdateCodeRequest $request, Code $code)
+    public function update(UpdateCodeRequest $request, CodeService $service, Code $code)
     {
-        $data = $request->validated();
+        $result = $service->update($request, $code);
 
-        $result = $code->update($data);
+        // $result = $code->update($data);
 
-        return response()->json($result);
+        // return response()->json($result);
     }
 
     public function destroy(Code $code)
@@ -70,11 +72,9 @@ class CodeController extends Controller
     }
 
     public function details($code_id) {
-        $code = Code::find($code_id);
-        if($code and $code->moderate_status == 'accepted') {
-            return view('details', compact('code'));
-        }
-        abort(404);
+        $code = Code::with('images', 'shop')->findOrFail($code_id);
+
+        return view('details', compact('code'));
     }
 
     public function viewed(Request $request, $code_id) {
@@ -87,5 +87,47 @@ class CodeController extends Controller
         $codes = Code::with('shop')->get();
 
         return view('dashboard.codes', compact('codes'));
+    }
+
+    public function uploadImages(Request $request, $codeId)
+    {
+        $code = Code::find($codeId);
+
+        $images = $request->images;
+        if(!empty($images)) {
+            foreach ($images as $image) {
+                $img = new Image();
+                $img->path = $image->store("/images/codes/$code->id/", ['disk' => 'public']);
+                $code->images()->save($img);
+            }
+        }
+
+        return response()->json(['images' => $code->images]);
+    }
+
+    public function deleteImages(Request $request, $codeId)
+    {
+        $code = Code::query()->find($codeId);
+        $imageId = $request->imageId;
+
+        if($imageId) {
+            $image = $code->images->where('id', $imageId)->first();
+            try {
+                unlink(public_path().'/storage/'.$image->path);
+            } catch(Exception $e) {
+                dd($e->getMessage());
+            }
+
+            $image->delete();
+        }
+
+        return response()->json(['images' => $code->images]);
+    }
+
+    public function fetchImages($codeId)
+    {
+        $code = Code::query()->find($codeId);
+
+        return response()->json(['images' => $code->images]);
     }
 }

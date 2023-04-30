@@ -7,7 +7,7 @@
                     <a :href="'/shop/'+shop.alias" class="shop-item" v-for="shop in shops">
                         <div class="flex items-center gap-x-2">
                             <div class="img-wrapper max-w-[150px] w-[150px] h-[100px]">
-                                <img class="h-full w-full object-contain" :src="'/storage/images/'+shop.image" alt="">
+                                <img class="h-full w-full object-contain" :src="'/storage/'+shop.image" alt="">
                             </div>
                             <span class="shop-name">{{ shop.name }}</span>
                         </div>

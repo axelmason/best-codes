@@ -14,6 +14,11 @@
 
     @vite('resources/scss/app.scss')
     @yield('customcss')
+    <style lang="scss">
+        li.active {
+            background: rgb(55, 65, 81)!important;
+        }
+    </style>
 </head>
 <body class="h-[100vh] overflow-y-hidden">
 <div class="flex flex-col h-full">
@@ -46,15 +51,15 @@
             <nav>
                 <ul>
                     @role(['admin'])
-                    <li>
-                        <a href="{{ route('dashboard.codes.adminPage') }}" class="block py-2 px-4 hover:bg-gray-700 w-full rounded-md">Коды</a>
+                    <li class="{{ strpos(Route::currentRouteName(), 'codes.adminPage') ? 'active' : null }}">
+                        <a href="{{ route('dashboard.codes.adminPage') }}" class="block py-2 px-10 hover:bg-gray-700 w-full rounded-md">Коды</a>
                     </li>
                     @endrole
-                    <li>
-                        <a href="#" class="block py-2 px-4 hover:bg-gray-700 w-full rounded-md">Ссылка 2</a>
+                    <li class="{{ strpos(Route::currentRouteName(), 'shops.adminPage') ? 'active' : null }}">
+                        <a href="{{ route('dashboard.shops.adminPage') }}" class="block py-2 px-10 hover:bg-gray-700 w-full rounded-md">Магазины</a>
                     </li>
                     <li>
-                        <a href="#" class="block py-2 px-4 hover:bg-gray-700 w-full rounded-md">Ссылка 3</a>
+                        <a href="#" class="block py-2 px-10 hover:bg-gray-700 w-full rounded-md">Ссылка 3</a>
                     </li>
                 </ul>
             </nav>

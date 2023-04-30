@@ -3,7 +3,7 @@
         <div class="grid grid-cols-4 gap-5 font-roboto">
             <div class="col-span-1 flex flex-col space-y-5">
                 <div class="shop-card flex flex-col items-center">
-                    <div class="img-wrapper"><img :src="'/storage/images/'+shop.image" alt=""></div>
+                    <div class="img-wrapper"><img :src="'/storage/'+shop.image" alt=""></div>
                     <p class="text-[#505050]" style="font-size: 24px;">{{ shop.codes.length }} действующих купонов</p>
                 </div>
                 <div class="shop-card flex flex-col">

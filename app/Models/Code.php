@@ -19,7 +19,8 @@ class Code extends Model
         'moderate_message',
         'moderator_id',
         'user_id',
-        'shop_id'
+        'shop_id',
+        'type'
     ];
 
     public function user()
@@ -30,5 +31,10 @@ class Code extends Model
     public function shop()
     {
         return $this->belongsTo(Shop::class);
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

@@ -1,25 +1,30 @@
 <template>
     <el-card>
         <el-button @click="openEditModal(null)" class="mb-1" type="primary">+ Добавить</el-button>
-        <el-table v-loading="loading" :data="codesData">
+        <el-table v-loading="loading" :data="shops">
             <el-table-column prop="id" width="100">
                 <template #header>ID</template>
             </el-table-column>
-            <el-table-column prop="shop.name">
-                <template #header>Магазин</template>
+            <el-table-column>
+                <template #header>Изображение</template>
+                <template #default="scope">
+                    <div class="table-img-wrapper max-w-[50px] max-h-[50px] object-contain">
+                        <img class="w-full" :src="'/storage/'+scope.row.image" alt="">
+                    </div>
+                </template>
             </el-table-column>
-            <el-table-column prop="code">
-                <template #header>Код</template>
+            <el-table-column prop="name">
+                <template #header>Название</template>
             </el-table-column>
-            <el-table-column prop="title">
-                <template #header>Заголовок</template>
+            <el-table-column prop="type.title">
+                <template #header>Тип</template>
             </el-table-column>
-            <el-table-column width="110">
-                <template #header><el-icon><View /></el-icon> / <el-icon><Checked /></el-icon></template>
-                <template #default="scope">{{ scope.row.views_count }} / {{ scope.row.usages_count }}</template>
+            <el-table-column prop="codes_count">
+                <template #header>Кодов</template>
             </el-table-column>
             <el-table-column prop="created_at">
                 <template #header>Дата создания</template>
+                <template #default="scope">{{ parseTimestamp(scope.row.created_at) }}</template>
             </el-table-column>
             <el-table-column>
                 <template #header>Действия</template>
@@ -32,37 +37,35 @@
             </el-table-column>
         </el-table>
         <el-pagination :page-size="15" :current-page="page" :total="total" layout="prev, pager, next" @current-change="changePage"></el-pagination>
-        <code-modal @submit="getCodes()" ref="modal"></code-modal>
+        <ShopModal @submit="getShops()" ref="modal"></ShopModal>
     </el-card>
 </template>
 
 <script>
-import CodeModal from './CodeModal.vue'
+import ShopModal from './ShopModal.vue'
+import { parseTimestamp } from '../../global/functions';
 
 export default {
-    components: {CodeModal},
+    components: {ShopModal},
     data: () => ({
         filters: {},
-        codesData: [],
+        shops: [],
         total: null,
         page: 1,
         loading: false,
     }),
-    props: {
-        codes: Object
-    },
     mounted() {
-        this.codesData = this.codes
-        this.getCodes()
+        this.getShops()
     },
     methods: {
-        getCodes() {
+        parseTimestamp,
+        getShops() {
             this.loading = true;
-            window.axios.get('/codes', { params: { page: this.page }})
+            window.axios.get('/shops', { params: { page: this.page }})
             .then((res) => {
-                console.log(res.data.total)
+                console.log(res.data)
                 this.total = res.data.total
-                this.codesData = res.data.codes.data
+                this.shops = res.data.shops.data
             }).finally(() => {
                 this.loading = false;
             })
@@ -71,7 +74,8 @@ export default {
             this.page = index;
             this.getCodes()
         },
-        openEditModal(id) {
+        openEditModal(id = null) {
+            console.log(id)
             this.$refs['modal'].show(id)
         }
     },

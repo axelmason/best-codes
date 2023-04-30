@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
+use App\Models\ShopType;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
+    public function adminPage()
+    {
+        return view('dashboard.shops');
+    }
+
     public function top()
     {
         $shops = Shop::orderBy('top', 'desc')->take(12)->get();
@@ -15,7 +21,9 @@ class ShopController extends Controller
 
     public function get($shopAlias)
     {
-        $shop = Shop::with(['codes'])->where('alias', $shopAlias)->first();
+        $shop = Shop::with(['codes' => function($query) {
+            $query->with('images');
+        }])->where('alias', $shopAlias)->first();
         $related = $shop->related();
         return view('shop', compact('shop', 'related'));
     }
@@ -25,6 +33,13 @@ class ShopController extends Controller
         $shop = Shop::findOrFail($shopId);
         $related = Shop::where('type', $shop->type)->get();
 
-        return response()->json(compact('related'), 200);
+        return response()->json(compact('related'));
+    }
+
+    public function getTypes()
+    {
+        $types = ShopType::all();
+
+        return response()->json($types);
     }
 }

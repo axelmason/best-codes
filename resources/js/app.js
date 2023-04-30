@@ -13,6 +13,7 @@ import ModerateForm from './pages/ModerateForm.vue'
 import SuggestForm from './pages/SuggestForm.vue'
 import CodeDetails from './pages/CodeDetails.vue'
 import Codes from './pages/Dashboard/Codes.vue'
+import Shops from './pages/Dashboard/Shops.vue'
 
 import HeaderShops from './modals/HeaderShops.vue'
 import Login from './modals/Login.vue'
@@ -51,6 +52,7 @@ app.component('moderate-form', ModerateForm);
 app.component('suggest-form', SuggestForm);
 app.component('code-details', CodeDetails);
 app.component('dashboard-codes', Codes);
+app.component('dashboard-shops', Shops);
 
 app.component('header-shops', HeaderShops);
 app.component('login-modal', Login);

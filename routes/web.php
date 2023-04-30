@@ -6,6 +6,7 @@ use App\Http\Controllers\ModerateController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ShopApiController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,14 +36,21 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['role:admin,moderator'])->prefix('dashboard')->name('dashboard.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::get('codes/page', [CodeController::class, 'adminPage'])->name('codes.adminPage');
+    Route::get('shops/page', [ShopController::class, 'adminPage'])->name('shops.adminPage');
 });
 
 Route::middleware('role:admin,moderator')->group(function () {
+    Route::get('/shops/all', [ShopApiController::class, 'all']);
     Route::resource('codes', CodeController::class);
+    Route::resource('shops', ShopApiController::class);
+    Route::post('codes/{id}/images/upload', [CodeController::class, 'uploadImages']);
+    Route::post('codes/{id}/images/delete', [CodeController::class, 'deleteImages']);
+    Route::get('codes/{id}/images/fetch', [CodeController::class, 'fetchImages']);
+
+    Route::get('shops/types', [ShopController::class, 'getTypes']);
     Route::get('moderate', [ModerateController::class, 'index'])->name('moderate');
     // Route::get('moderate/open/{code_id}', [ModerateController::class, 'open'])->name('open');
     // Route::put('moderate/{code_id}/edit', [ModerateController::class, 'update']);
 
-    Route::get('/shops/list', [ShopController::class, 'list']);
 });
 

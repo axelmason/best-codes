@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('codes', function (Blueprint $table) {
             $table->id();
-            $table->string('image')->default('default.png');
 
             $table->integer('shop_id');
             $table->string('code');
@@ -34,6 +33,7 @@ return new class extends Migration
             $table->integer('moderator_id')->nullable();
             $table->enum('moderate_status', ['new', 'in_work', 'rejected', 'accepted'])->default('new');
             $table->string('moderate_message')->nullable();
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

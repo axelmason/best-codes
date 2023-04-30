@@ -24,7 +24,7 @@ class ShopSeeder extends Seeder
             $values[] = [
                 'name' => $name,
                 'alias' => Str::slug($name),
-                'image' => $image,
+                'image' => 'images/'.$image,
                 'top' => fake()->boolean(),
                 'url' => fake()->url(),
                 'description' => fake()->text(300),

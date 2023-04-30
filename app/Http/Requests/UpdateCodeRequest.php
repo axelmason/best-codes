@@ -29,7 +29,7 @@ class UpdateCodeRequest extends FormRequest
             'code'          => 'required|string',
             'title'         => 'required|string',
             'description'   => 'nullable|string',
-            'shop.id'       => 'required|exists:shops,id'
+            'shop_id'       => 'required|exists:shops,id'
         ];
     }
 

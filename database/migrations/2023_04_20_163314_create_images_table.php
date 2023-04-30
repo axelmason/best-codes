@@ -13,17 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('shops', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-
-            $table->string('name');
-            $table->string('alias');
-            $table->string('image')->default('default.png');
-            $table->text('description')->nullable();
-            $table->string('url');
-            $table->integer('type_id');
-            $table->boolean('top')->default(false);
-
+            $table->morphs('imageable');
+            $table->string('path');
             $table->timestamps();
         });
     }
@@ -35,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shops');
+        Schema::dropIfExists('images');
     }
 };

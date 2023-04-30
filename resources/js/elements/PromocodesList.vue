@@ -1,11 +1,12 @@
 <template>
     <div class="flex flex-col gap-y-3">
-        <div class="code-item bg-white py-4 px-5 flex" v-for="code in codes">
-            <div class="code-img-wrapper"><img :src="'/storage/images/'+code.image" alt=""></div>
+        <div class="code-item bg-white py-4 px-5 flex gap-x-3" v-for="code in codes">
+            <div class="code-img-wrapper"><img :src="code.images?.[0] ? '/storage/'+code.images[0].path : '/storage/images/default.png'" alt=""></div>
             <div class="flex flex-col">
                 <p class="font-bold text-primary" style="font-size: 20px;">{{ getTypeName(code.type) }}</p>
                 <p class="font-semibold text-[#505050]" style="font-size: 32px;">{{ code.title }}</p>
                 <p class="text-[#b1b1b1] font-medium" style="font-size: 16px;">{{ parseDate(code.end_date) }}</p>
+                <el-button class="mt-3"><a :href="'/code/'+code.id">Подробнее</a></el-button>
             </div>
         </div>
     </div>
@@ -42,6 +43,13 @@ export default {
 
 <style lang="scss" scoped>
 .code-img-wrapper {
-    max-width: 200px;
+    display: flex;
+    justify-content: center;
+    height: 150px;
+    width: 200px;
+    img {
+    object-fit: contain;
+        height: 100%;
+    }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="shop-card" :class="{'horizont': horizont}">
+    <div class="shop-card bg-white rounded-xl" :class="{'horizont': horizont}">
         <div class="img-wrapper">
             <img :src="getImage" @error="brokenImage">
         </div>
@@ -49,7 +49,7 @@ export default {
                 return this.shop.image ? URL.createObjectURL(this.shop.image) : '/storage/images/default.png';
             }
             try {
-                return this.shop.image ? '/storage/images/'+this.shop.image : '/storage/images/default.png';
+                return this.shop.image ? '/storage/'+this.shop.image : '/storage/images/default.png';
             } catch (e) {
                 console.log(e)
             }
@@ -60,16 +60,18 @@ export default {
 
 <style scoped lang="scss">
 .shop-card {
-    @apply border px-5 py-2 my-2 flex flex-col items-center max-lg:mx-5 max-md:w-[260px] w-[320px];
+    @apply border px-5 py-2 my-2 flex flex-col items-center max-lg:mx-5;
     height: 100%;
     overflow: hidden;
     .title {
         @apply font-medium text-lg;
     }
     .img-wrapper {
+        max-height: 150px;
         max-width: 200px;
         img {
             width: 100%;
+            height: 100%;
         }
     }
 
