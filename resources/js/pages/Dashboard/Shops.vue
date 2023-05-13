@@ -63,7 +63,6 @@ export default {
             this.loading = true;
             window.axios.get('/shops', { params: { page: this.page }})
             .then((res) => {
-                console.log(res.data)
                 this.total = res.data.total
                 this.shops = res.data.shops.data
             }).finally(() => {

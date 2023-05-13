@@ -6,7 +6,7 @@
                 <p class="font-bold text-primary" style="font-size: 20px;">{{ getTypeName(code.type) }}</p>
                 <p class="font-semibold text-[#505050]" style="font-size: 32px;">{{ code.title }}</p>
                 <p class="text-[#b1b1b1] font-medium" style="font-size: 16px;">{{ parseDate(code.end_date) }}</p>
-                <el-button class="mt-3"><a :href="'/code/'+code.id">Подробнее</a></el-button>
+                <el-button class="mt-3 w-max bg-primary text-white"><a :href="'/code/'+code.id">Подробнее</a></el-button>
             </div>
         </div>
     </div>
@@ -14,9 +14,10 @@
 
 <script>
 export default {
-    props: {
-        codes: {
-            type: Array
+    data() {
+        return {
+            codes: null,
+            filter: null
         }
     },
     methods: {

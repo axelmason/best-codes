@@ -33,7 +33,7 @@
                             <p>Обложка магазина</p>
                             <div class="image-container" v-if="shopId">
                                 <div class="image-wrapper">
-                                    <img :src="'/storage/images/'+shop.image" alt="" class="image">
+                                    <img :src="'/storage/'+shop.image" alt="" class="image">
                                 </div>
                             </div>
                             <label class="inline-block bottom-0">
