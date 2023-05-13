@@ -26,7 +26,7 @@
                 <template #default="scope">
                     <div class="flex gap-x-1">
                         <el-button type="primary" @click="openEditModal(scope.row.id)"><el-icon><Edit /></el-icon></el-button>
-                        <el-button type="danger"><el-icon><Delete /></el-icon></el-button>
+                        <el-button type="danger" @click="deleteCode(scope.row.id)"><el-icon><Delete /></el-icon></el-button>
                     </div>
                 </template>
             </el-table-column>
@@ -60,7 +60,6 @@ export default {
             this.loading = true;
             window.axios.get('/codes', { params: { page: this.page }})
             .then((res) => {
-                console.log(res.data.total)
                 this.total = res.data.total
                 this.codesData = res.data.codes.data
             }).finally(() => {
@@ -73,6 +72,11 @@ export default {
         },
         openEditModal(id) {
             this.$refs['modal'].show(id)
+        },
+        deleteCode(id) {
+            this.loading = true;
+            window.axios.delete(`/codes/${id}`)
+            .then(() => this.getCodes())
         }
     },
 

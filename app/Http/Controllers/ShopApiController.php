@@ -46,13 +46,6 @@ class ShopApiController extends Controller
         return response()->json(compact('shop', 'types'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $data = $request->all();
@@ -67,14 +60,11 @@ class ShopApiController extends Controller
         $shop->update($data);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $shop = Shop::findOrFail($id);
+        if($shop->image) Storage::disk('public')->delete($shop->image);
+
+        $shop->delete();
     }
 }

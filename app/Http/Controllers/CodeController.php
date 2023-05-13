@@ -61,6 +61,7 @@ class CodeController extends Controller
 
     public function destroy(Code $code)
     {
+        if($code->images()->exists()) $code->images()->delete();
         $code->delete();
 
         return response()->json('', Response::HTTP_NO_CONTENT);

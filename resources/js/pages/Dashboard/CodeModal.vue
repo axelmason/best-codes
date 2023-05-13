@@ -218,7 +218,6 @@ export default {
 
             const sendForm = { ...this.code };
             delete sendForm.images;
-            console.log(this.codeId)
             let url = this.codeId ? '/codes/'+this.codeId : '/codes'
             if(this.codeId) sendForm['_method'] = 'put'
 

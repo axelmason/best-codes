@@ -118,19 +118,18 @@ export default {
         submit() {
             this.loading = true;
 
-            let method = !!this.shopId ? 'put' : 'post';
             let url = !!this.shopId ? `/shops/${this.shopId}` : '/shops';
             const config = { headers: { 'Content-Type': 'multipart/form-data' } };
 
             let form = new FormData()
-            form.append('image', this.image)
+            form.set('image', this.image)
             for(const [key, value] of Object.entries(this.shop)) {
                 form.append(key, value)
             }
+            if(this.shopId) form.append('_method', 'PUT')
 
-            this.$http[method](url, form, config)
+            this.$http.post(url, form, config)
                 .then((res) => {
-                    console.log(res)
                     ElMessage({
                         message: "Изменения успешно сохранены",
                         type: "success"

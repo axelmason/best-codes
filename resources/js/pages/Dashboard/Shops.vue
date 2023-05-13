@@ -31,7 +31,7 @@
                 <template #default="scope">
                     <div class="flex gap-x-1">
                         <el-button type="primary" @click="openEditModal(scope.row.id)"><el-icon><Edit /></el-icon></el-button>
-                        <el-button type="danger"><el-icon><Delete /></el-icon></el-button>
+                        <el-button type="danger" @click="deleteShop(scope.row.id)"><el-icon><Delete /></el-icon></el-button>
                     </div>
                 </template>
             </el-table-column>
@@ -74,8 +74,12 @@ export default {
             this.getCodes()
         },
         openEditModal(id = null) {
-            console.log(id)
             this.$refs['modal'].show(id)
+        },
+        deleteShop(id) {
+            this.loading = true;
+            window.axios.delete(`/shops/${id}`)
+            .then(() => this.getShops())
         }
     },
 
