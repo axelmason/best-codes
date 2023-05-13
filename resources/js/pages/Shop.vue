@@ -8,7 +8,7 @@
                 </div>
                 <div class="shop-card flex flex-col">
                     <h3 class="text-primary font-medium" style="font-size: 24px;">О магазине</h3>
-                    <p class="text-[#8A9397]">{{ shop.description }}</p>
+                    <p class="text-[#8A9397]" v-html="shop.description"></p>
                 </div>
                 <div class="flex flex-col">
                     <h3 class="font-medium" style="font-size: 24px;">Похожие магазины</h3>
@@ -19,15 +19,12 @@
             </div>
             <div class="col-span-3 flex flex-col">
                 <h1 class="font-bold text-[#505050]" style="font-size: 32px;">Промокоды {{ shop.name }}</h1>
-                <div class="flex justify-between">
-                    <div class="type-selector font-bold space-x-10">
-                        <span class="active">Все купоны</span>
-                        <span class="">Промокоды</span>
-                        <span class="">Скидки</span>
-                    </div>
-                    <a href="/suggest" class="suggest-button underline underline-offset-4 text-primary font-bold">Добавить купон</a>
+                <div class="type-selector font-bold space-x-10">
+                    <span class="active">Все купоны</span>
+                    <span class="">Промокоды</span>
+                    <span class="">Акции</span>
                 </div>
-                <promocodes-list :codes="shop.codes" />
+                <promocodes-list ref="list" />
             </div>
         </div>
     </div>
@@ -37,7 +34,7 @@
 export default {
     data() {
         return {
-
+            codesFilter: null
         }
     },
     props: {
@@ -47,6 +44,9 @@ export default {
         related: {
             type: Array
         }
+    },
+    mounted() {
+        this.$refs['list'].codes = this.shop.codes
     },
 }
 </script>

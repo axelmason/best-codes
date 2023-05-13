@@ -33,7 +33,6 @@
                             @role(['admin', 'moderator'])
                                 <a class="btn btn-white" href="{{ route('dashboard.index') }}">Admin</a>
                             @endrole
-                            <a href="{{ route('suggest')  }}" class="btn btn-white">Предложить код</a>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
                                 <button class="btn btn-white w-full" type="submit">Выйти</button>

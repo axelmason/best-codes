@@ -30,13 +30,14 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
-    Route::get('/suggest', [CodeController::class, 'suggestPage'])->name('suggest');
 });
 
 Route::middleware(['role:admin,moderator'])->prefix('dashboard')->name('dashboard.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::get('codes/page', [CodeController::class, 'adminPage'])->name('codes.adminPage');
     Route::get('shops/page', [ShopController::class, 'adminPage'])->name('shops.adminPage');
+    Route::get('employees/page', [ModerateController::class, 'adminPage'])->name('employees.adminPage');
+    Route::get('codes/moderate', [ModerateController::class, 'moderatePage'])->name('codes.moderatePage');
 });
 
 Route::middleware('role:admin,moderator')->group(function () {
@@ -48,9 +49,13 @@ Route::middleware('role:admin,moderator')->group(function () {
     Route::get('codes/{id}/images/fetch', [CodeController::class, 'fetchImages']);
 
     Route::get('shops/types', [ShopController::class, 'getTypes']);
-    Route::get('moderate', [ModerateController::class, 'index'])->name('moderate');
+    Route::get('moderate', [ModerateController::class, 'list'])->name('moderate');
+
+    Route::get('moderators/list', [ModerateController::class, 'employeesList']);
+    Route::post('moderators/set', [ModerateController::class, 'setNewModerator']);
+    Route::post('moderators/unset', [ModerateController::class, 'unsetModerator']);
     // Route::get('moderate/open/{code_id}', [ModerateController::class, 'open'])->name('open');
-    // Route::put('moderate/{code_id}/edit', [ModerateController::class, 'update']);
+    Route::put('moderate/{code_id}/edit', [ModerateController::class, 'update']);
 
 });
 

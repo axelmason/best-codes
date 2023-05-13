@@ -8,12 +8,11 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import Home from './pages/Home.vue'
 import Shop from './pages/Shop.vue'
-import Moderate from './pages/Moderate.vue'
-import ModerateForm from './pages/ModerateForm.vue'
-import SuggestForm from './pages/SuggestForm.vue'
 import CodeDetails from './pages/CodeDetails.vue'
+import ModerateCodes from './pages/Dashboard/ModerateCodes.vue'
 import Codes from './pages/Dashboard/Codes.vue'
 import Shops from './pages/Dashboard/Shops.vue'
+import Employees from './pages/Dashboard/Employees.vue'
 
 import HeaderShops from './modals/HeaderShops.vue'
 import Login from './modals/Login.vue'
@@ -47,12 +46,11 @@ app.component('font-awesome-icon', FontAwesomeIcon)
 
 app.component('home-page', Home);
 app.component('shop-page', Shop);
-app.component('moderate-page', Moderate);
-app.component('moderate-form', ModerateForm);
-app.component('suggest-form', SuggestForm);
 app.component('code-details', CodeDetails);
+app.component('dashboard-moderate-codes', ModerateCodes);
 app.component('dashboard-codes', Codes);
 app.component('dashboard-shops', Shops);
+app.component('dashboard-employees', Employees);
 
 app.component('header-shops', HeaderShops);
 app.component('login-modal', Login);

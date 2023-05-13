@@ -2,12 +2,12 @@
     <transition name="fade">
         <div class="modal-wrapper z-50" @click="$emit('close')" v-if="show">
             <div class="modal" @click.stop>
-                <div class="flex max-lg:flex-col">
+                <div class="flex max-lg:flex-col max-lg:w-[320px]">
                     <div class="lg:rounded-l max-lg:rounded-t promotion bg-gradient-to-br from-primary to-[#FF5F6D] flex flex-1 flex-col py-5 px-10"
                         v-if="promotion">
                         <h3 class="text-4xl font-bold text-white text-center mb-4">Добро пожаловать на PromoZone</h3>
-                        <p class="text-lg text-white text-center">Узнавайте обо всех скидках на нашем сайте!</p>
-                        <div class="flex flex-col justify-center items-center bg-white py-4 px-6 rounded-lg shadow-md mt-4">
+                        <p class="text-lg text-white text-center max-lg:hidden">Узнавайте обо всех скидках на нашем сайте!</p>
+                        <div class="flex flex-col justify-center items-center bg-white py-4 px-6 rounded-lg shadow-md mt-4 max-lg:hidden">
                             <span class="text-gray-500 text-md font-medium mb-2">Следите за нами в соцсетях:</span>
                             <div class="flex justify-center items-center">
                                 <a href="#" target="_blank" rel="noopener" class="mr-4">
