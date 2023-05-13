@@ -26,7 +26,7 @@
     <el-dialog v-model="showCode" class="max-w-[500px] min-w-[320px]" title="Активация кода">
         <p>Ваш код (нажмите, чтобы скопировать): <button class="select-code" @click="selectCode">{{ code.code }}</button></p>
         <br>
-        <a :href="'http://'+code.shop.url" @click="useCode()" target="_blank" class="btn btn-primary">Перейти к ресурсу</a>
+        <a :href="code.shop.url" @click="useCode()" target="_blank" class="btn btn-primary">Перейти к ресурсу</a>
     </el-dialog>
 </template>
 
