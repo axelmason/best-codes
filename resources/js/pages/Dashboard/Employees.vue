@@ -16,7 +16,7 @@
                 <el-table-column prop="new_count" label="Новых" />
                 <el-table-column prop="accepted_count" label="Одобренных" />
                 <el-table-column prop="rejected_count" label="Отклонённых" />
-                <el-table-column prop="rejected_count" label="В работе" />
+                <el-table-column prop="in_work_count" label="В работе" />
             </el-table-column>
             <el-table-column>
                 <template #default="scope">

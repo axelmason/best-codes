@@ -15,8 +15,13 @@
                             class="max-xl:hidden"> промокод</span></a>
                 </div>
             </div>
-            <div v-else class="col-span-2 grid lg:grid-cols-2 max-md:grid-cols-1 gap-5">
-                <shop-card v-for="shop in shops" horizont :shop="shop" />
+            <div v-else class="col-span-2 max-md:grid-cols-1">
+                <div v-if="shops.length !== 0" class="grid lg:grid-cols-2 gap-5">
+                    <div class="text-3xl" v-if="!!getSearchQuery">Результаты по запросу "{{ getSearchQuery }}"</div>
+                    <br v-if="!!getSearchQuery" />
+                    <shop-card v-for="shop in shops" horizont :shop="shop" />
+                </div>
+                <div class="text-3xl mb-52" v-else>Нет результатов по запросу "{{ getSearchQuery }}"</div>
             </div>
             <div class="flex flex-col gap-y-3">
                 <div id="how-it-works" class="bg-white rounded-xl px-12 py-10 relative" style="z-index: -20">
@@ -71,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <h2 class="col-span-full mt-5 font-bold text-4xl">Список магазинов</h2>
+            <h2 class="col-span-full mt-5 font-bold text-4xl" v-if="!!topCodes">Список магазинов</h2>
             <div v-if="!!topCodes" class="code-cards mt-3 col-start-1 col-end-3">
                 <shop-card v-for="shop in shops" :shop="shop"></shop-card>
             </div>
@@ -93,15 +98,16 @@ export default {
             type: Object,
         },
     },
+    computed: {
+        getSearchQuery() {
+            return new URLSearchParams(window.location.search).get('query')
+        }
+    },
     methods: {
         getImage(img) {
-            try {
-                return img
-                    ? "/storage/" + img
-                    : "/storage/images/default.png";
-            } catch (e) {
-                console.log(e);
-            }
+            return img
+                ? "/storage/" + img
+                : "/storage/images/default.png";
         },
         brokenImage(e) {
             return (e.target.src = "/storage/images/default.png");

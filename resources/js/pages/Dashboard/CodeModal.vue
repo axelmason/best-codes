@@ -48,34 +48,31 @@
                 <el-tab-pane label="Изображения">
                     <el-row>
                         <el-col>
-                            <div v-if="codeId">
-                                <p v-if="images?.length">Список изображений</p>
-                                <p v-else><i>Изображения отсуствуют</i></p>
-                                <div class="images-grid py-5">
-                                    <div class="image-container place-self-center" v-for="(image, index) in images" :key="index">
-                                        <div class="image-wrapper">
-                                            <img :src="image.blob_src || ('/storage/' + image?.path)" class="image" alt="">
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <label class="inline-block bottom-0">
-                                                <p>Изменить</p>
-                                                <input @change="changeImage(e, image)" type="file" class="hidden">
-                                            </label>
-                                            <p @click="deleteImage(image.id)" class="cursor-pointer text-red-600">Удалить</p>
-                                        </div>
+                            <p v-if="images?.length">Список изображений</p>
+                            <p v-else><i>Изображения отсуствуют</i></p>
+                            <div class="images-grid py-5">
+                                <div class="image-container place-self-center" v-for="(image, index) in images" :key="index">
+                                    <div class="image-wrapper">
+                                        <img :src="image.blob_src || ('/storage/' + image?.path)" class="image" alt="">
                                     </div>
-                                    <div v-if="images?.length < 10" class="image-container place-self-center">
-                                        <div class="image-wrapper">
-                                            <img src="/storage/images/default.png" class="image" alt="">
-                                            <label class="inline-block">
-                                                <input @change="uploadImages" multiple accept="image/*" type="file" class="hidden">
-                                                <el-icon size="40" class="image-icon"><Plus /></el-icon>
-                                            </label>
-                                        </div>
+                                    <div v-if="codeId" class="flex justify-between">
+                                        <label class="inline-block bottom-0">
+                                            <p>Изменить</p>
+                                            <input @change="changeImage(e, image)" type="file" class="hidden">
+                                        </label>
+                                        <p @click="deleteImage(image.id)" class="cursor-pointer text-red-600">Удалить</p>
+                                    </div>
+                                </div>
+                                <div v-if="images?.length < 10" class="image-container place-self-center">
+                                    <div class="image-wrapper">
+                                        <img src="/storage/images/default.png" class="image" alt="">
+                                        <label class="inline-block">
+                                            <input @change="uploadImages" multiple accept="image/*" type="file" class="hidden">
+                                            <el-icon size="40" class="image-icon"><Plus /></el-icon>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
-                            <div v-else>Будет доступно после создания кода</div>
                         </el-col>
                     </el-row>
                 </el-tab-pane>
@@ -157,7 +154,8 @@ export default {
         visible: false,
         loading: false,
         shops: [],
-        changeShop: false
+        changeShop: false,
+        newImagesFormdata: null
     }),
     mounted() {},
     computed: {
@@ -207,21 +205,25 @@ export default {
             this.loading = false
         },
         closeDialog() {
-            this.codeId = null;
-            this.code = {}
-            this.shops = []
-            this.images = []
-            this.visible = false;
+            Object.assign(this.$data, this.$options.data())
         },
         submit() {
             this.loading = true;
 
-            const sendForm = { ...this.code };
-            delete sendForm.images;
-            let url = this.codeId ? '/codes/'+this.codeId : '/codes'
-            if(this.codeId) sendForm['_method'] = 'put'
+            var data = this.codeId ? this.code : this.newImagesFormdata
+            var config = {}
+            let url;
 
-            this.$http.post(url, sendForm)
+            if(this.codeId) {
+                data['_method'] = 'put'
+                url = '/codes/'+this.codeId
+            } else {
+                Object.entries(this.code).map(([key, value]) => this.newImagesFormdata.append(key, value))
+                url = '/codes'
+                config = { headers: { 'Content-Type': 'multipart/form-data' } }
+            }
+
+            this.$http.post(url, data, config)
                 .then((res) => {
                     ElMessage({
                         message: "Изменения успешно сохранены",
@@ -242,6 +244,7 @@ export default {
                 })
         },
         uploadImages(event) {
+            if(!this.codeId) return this.uploadNewImages(event.target.files)
             this.loading = true;
 
             const formData = new FormData();
@@ -256,6 +259,15 @@ export default {
             .then(async (res) => {
                 await this.fetchImages()
             })
+        },
+        uploadNewImages(files) {
+            this.newImagesFormdata = new FormData()
+
+            for (let i = 0; i < files.length; i++) {
+                let blob = URL.createObjectURL(files[i])
+                this.images.push({blob_src: blob})
+                this.newImagesFormdata.append('images[]', files[i])
+            }
         },
         deleteImage(id) {
             this.loading = true;

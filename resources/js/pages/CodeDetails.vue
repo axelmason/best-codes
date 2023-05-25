@@ -47,7 +47,7 @@ export default {
     }),
     mounted() {
         setTimeout(() => {
-            window.axios.put(`/code/${this.code.id}/viewed`, {views_count : this.code.views_count+1})
+            window.axios.put(`/code/${this.code.id}/view`)
         }, 5000);
     },
     methods: {
@@ -70,7 +70,7 @@ export default {
             })
         },
         useCode() {
-            window.axios.put(`/code/${this.code.id}/viewed`, {usages_count : this.code.usages_count+1})
+            window.axios.put(`/code/${this.code.id}/use`)
             this.showCode = false
         },
         changeImage(e) {

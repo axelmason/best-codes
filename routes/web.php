@@ -18,7 +18,8 @@ Route::get('/shop/{shop_alias}', [ShopController::class, 'get']);
 Route::get('/shop/{shop_id}/related', [ShopController::class, 'getRelated']);
 
 Route::get('code/{code_id}', [CodeController::class, 'details'])->name('details');
-Route::put('code/{code_id}/viewed', [CodeController::class, 'viewed']);
+Route::put('code/{code_id}/view', [CodeController::class, 'view']);
+Route::put('code/{code_id}/use', [CodeController::class, 'use']);
 Route::get('/notifications', [NotificationController::class, 'get']);
 Route::put('/notifications/{id}', [NotificationController::class, 'put']);
 Route::post('/notifications', [NotificationController::class, 'create']);

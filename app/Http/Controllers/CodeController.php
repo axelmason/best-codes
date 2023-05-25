@@ -10,10 +10,18 @@ use App\Services\CodeService;
 use App\Models\Code;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Middleware\ThrottleRequests;
 use Symfony\Component\HttpFoundation\Response;
 
 class CodeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(ThrottleRequests::class . ':1,5')->only('use');
+        $this->middleware(ThrottleRequests::class . ':1,5')->only('view');
+    }
+
     public function index(Request $r)
     {
         $query = Code::query();
@@ -52,11 +60,7 @@ class CodeController extends Controller
 
     public function update(UpdateCodeRequest $request, CodeService $service, Code $code)
     {
-        $result = $service->update($request, $code);
-
-        // $result = $code->update($data);
-
-        // return response()->json($result);
+        $service->update($request, $code);
     }
 
     public function destroy(Code $code)
@@ -78,9 +82,18 @@ class CodeController extends Controller
         return view('details', compact('code'));
     }
 
-    public function viewed(Request $request, $code_id) {
-        $key = key($request->all());
-        $code = Code::find($code_id)->update([$key => $request->input($key)]);
+    public function use(Request $request, $code_id)
+    {
+        $code = Code::query()->find($code_id);
+        $code->usages_count += 1;
+        $code->save();
+    }
+
+    public function view(Request $request, $code_id)
+    {
+        $code = Code::query()->find($code_id);
+        $code->views_count += 1;
+        $code->save();
     }
 
     public function adminPage()

@@ -48,11 +48,8 @@ export default {
             if(this.isPreview) {
                 return this.shop.image ? URL.createObjectURL(this.shop.image) : '/storage/images/default.png';
             }
-            try {
-                return this.shop.image ? '/storage/'+this.shop.image : '/storage/images/default.png';
-            } catch (e) {
-                console.log(e)
-            }
+
+            return this.shop.image ? '/storage/'+this.shop.image : '/storage/images/default.png';
         }
     }
 }
@@ -61,7 +58,6 @@ export default {
 <style scoped lang="scss">
 .shop-card {
     @apply border px-5 py-2 my-2 flex flex-col items-center max-lg:mx-5;
-    height: 100%;
     overflow: hidden;
     .title {
         @apply font-medium text-lg;
@@ -76,7 +72,7 @@ export default {
     }
 
     &.horizont {
-        @apply max-lg:mx-0 my-0 rounded-xl border-0 grid grid-cols-1 items-start max-w-none w-full bg-white p-5;
+        @apply max-lg:mx-0 my-0 rounded-xl border-0 grid grid-cols-1 items-start w-full bg-white p-5;
 
         .title {
             font-size: 24px;

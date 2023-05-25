@@ -1,11 +1,11 @@
 <template>
     <el-card>
         <el-button @click="openEditModal(null)" class="mb-1" type="primary">+ Добавить</el-button>
-        <el-table v-loading="loading" :data="shops">
+        <el-table class="overflow-x-auto" v-loading="loading" :data="shops">
             <el-table-column prop="id" width="100">
                 <template #header>ID</template>
             </el-table-column>
-            <el-table-column>
+            <el-table-column min-width="130">
                 <template #header>Изображение</template>
                 <template #default="scope">
                     <div class="table-img-wrapper max-w-[50px] max-h-[50px] object-contain">
@@ -13,20 +13,20 @@
                     </div>
                 </template>
             </el-table-column>
-            <el-table-column prop="name">
+            <el-table-column prop="name" width="100">
                 <template #header>Название</template>
             </el-table-column>
-            <el-table-column prop="type.title">
+            <el-table-column prop="type.title" width="100">
                 <template #header>Тип</template>
             </el-table-column>
-            <el-table-column prop="codes_count">
+            <el-table-column prop="codes_count" width="100">
                 <template #header>Кодов</template>
             </el-table-column>
-            <el-table-column prop="created_at">
+            <el-table-column prop="created_at" width="130">
                 <template #header>Дата создания</template>
                 <template #default="scope">{{ parseTimestamp(scope.row.created_at) }}</template>
             </el-table-column>
-            <el-table-column>
+            <el-table-column width="150">
                 <template #header>Действия</template>
                 <template #default="scope">
                     <div class="flex gap-x-1">

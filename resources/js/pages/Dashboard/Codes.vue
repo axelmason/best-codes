@@ -2,26 +2,27 @@
     <el-card>
         <el-button @click="openEditModal(null)" class="mb-1" type="primary">+ Добавить</el-button>
         <el-table v-loading="loading" :data="codesData">
-            <el-table-column prop="id" width="100">
+            <el-table-column prop="id" width="50">
                 <template #header>ID</template>
             </el-table-column>
-            <el-table-column prop="shop.name">
+            <el-table-column prop="shop.name" width="100">
                 <template #header>Магазин</template>
             </el-table-column>
             <el-table-column prop="code">
                 <template #header>Код</template>
             </el-table-column>
-            <el-table-column prop="title">
+            <el-table-column prop="title" width="200">
                 <template #header>Заголовок</template>
             </el-table-column>
             <el-table-column width="110">
                 <template #header><el-icon><View /></el-icon> / <el-icon><Checked /></el-icon></template>
                 <template #default="scope">{{ scope.row.views_count }} / {{ scope.row.usages_count }}</template>
             </el-table-column>
-            <el-table-column prop="created_at">
+            <el-table-column prop="created_at" width="130">
                 <template #header>Дата создания</template>
+                <template #default="scope">{{ scope.row.created_at || '?' }}</template>
             </el-table-column>
-            <el-table-column>
+            <el-table-column width="150">
                 <template #header>Действия</template>
                 <template #default="scope">
                     <div class="flex gap-x-1">
