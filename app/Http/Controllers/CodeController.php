@@ -15,13 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CodeController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware(ThrottleRequests::class . ':1,5')->only('use');
-        $this->middleware(ThrottleRequests::class . ':2,10')->only('view');
-    }
-
     public function index(Request $r)
     {
         $query = Code::query();
