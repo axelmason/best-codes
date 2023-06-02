@@ -49,6 +49,13 @@
             </div>
         </header>
         @yield('content')
+        <footer>
+            <div class="w-full bg-primary">
+                <div class="container mx-auto">
+
+                </div>
+            </div>
+        </footer>
     </div>
 
     @vite('resources/js/app.js')
