@@ -45,6 +45,11 @@ import Modal from '../elements/Modal.vue';
                         type: 'password',
                         required: true
                     },
+                    password_confirmation: {
+                        name: 'Подтвердить пароль',
+                        type: 'password',
+                        required: true
+                    },
                 },
                 errors: {}
             }

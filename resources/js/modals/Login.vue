@@ -10,8 +10,11 @@
     @close="modalOpen = !modalOpen"
     @onSubmit="submit"
     >
-    <template v-slot:extra>
+        <template v-slot:extra>
+        <div class="flex flex-col">
+            <span>Забыли пароль? <a href="" class="text-primary">Восстановить</a></span>
             <span>Ещё не зарегистрированны? <a href="" class="text-primary">Регистрация</a></span>
+        </div>
         </template>
     </show-modal>
 </template>

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
+Route::view('/privacy','privacy')->name('privacy');
 
 Route::get('/shops/top', [ShopController::class, 'top']);
 Route::get('/shop/{shop_alias}', [ShopController::class, 'get']);

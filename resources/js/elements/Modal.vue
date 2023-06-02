@@ -40,6 +40,9 @@
                             <div class="error-message">
                                 {{ errors.message }}
                             </div>
+                            <div class="slots">
+                                <slot name="extra"></slot>
+                            </div>
                             <button type="submit" class="w-full bg-gradient-to-br from-primary to-[#FF5F6D] rounded-full text-white font-bold text-lg py-2 px-4 shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 ease-in-out hover:opacity-90">
                                 {{ buttonText }}
                             </button>
@@ -48,9 +51,7 @@
                         <div v-if="text">
                             <p>{{ text }}</p>
                         </div>
-                        <div class="slots">
-                            <slot name="extra"></slot>
-                        </div>
+
                     </div>
                 </div>
             </div>

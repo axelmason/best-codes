@@ -51,8 +51,29 @@
         @yield('content')
         <footer>
             <div class="w-full bg-primary">
-                <div class="container mx-auto">
-
+                <div class="container py-10 mx-auto">
+                    <div class="footer-links flex gap-y-5 justify-between max-md:flex-col max-md:px-5">
+                        <div class="footer-link space-y-3">
+                            <h2 class="font-roboto text-white uppercase text-2xl font-black">{{ config('app.name') }}</h2>
+                            <p class="font-roboto text-white text-lg"><span class="font-bold">Адрес:</span> <a href="https://goo.gl/maps/Ct3Bhs54D5fs1Wuq8?coh=178572&entry=tt">ул. Тарская, 2, Омск, Омская обл., 644099</a></p>
+                            <p class="font-roboto text-white text-lg"><span class="font-bold">Телефон:</span> <a href="tel:+7 (913) 999-99-99">+7 (913) 999-99-99</a></p>
+                            <p class="font-roboto text-white text-lg"><span class="font-bold">Email:</span> <a href="mailto:Promozone@mail.com">promozone@mail.com</a></p>
+                        </div>
+                        <ul class="footer-link space-y-3">
+                            <li>
+                                <h2 class="font-roboto text-white uppercase text-2xl font-black">Разделы сайта</h2>
+                            </li>
+                            <li>
+                                <a class="font-roboto text-white text-lg" href="{{ route('home') }}">Главная</a>
+                            </li>
+                            <li>
+                                <a class="font-roboto text-white text-lg" href="{{ route('search') }}">Магазины</a>
+                            </li>
+                            <li>
+                                <a class="font-roboto text-white text-lg" href="{{ route('privacy') }}">Политика конфиденциальности</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </footer>
