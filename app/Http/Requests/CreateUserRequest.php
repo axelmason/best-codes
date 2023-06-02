@@ -19,7 +19,7 @@ class CreateUserRequest extends FormRequest
             'name'      => 'required|string',
             'login'     => 'required|string',
             'email'     => 'required|email|unique:users',
-            'password'  => 'required|string'
+            'password'  => 'required|string|confirmed'
         ];
     }
 

@@ -6,7 +6,7 @@
         <p class="title">{{ shop.name }}</p>
         <p class="type text-xs text-gray-500">{{ shop.type.title }}</p>
         <div class="flex mt-auto justify-between items-center w-full goto-btn">
-            <a style="transition: .3s;" :href="`shop/${shop.alias}`" class="w-full font-bold text-primary border-primary border text-center py-1 rounded-2xl hover:bg-primary hover:text-white">Промокоды и акции</a>
+            <a style="transition: .3s;" :href="`shop/${shop.alias}`" class="w-full font-bold text-primary border-primary border text-center py-1 my-3 rounded-2xl hover:bg-primary hover:text-white">Промокоды и акции</a>
         </div>
     </div>
 </template>
