@@ -63,7 +63,8 @@ export default {
         @apply font-medium text-lg;
     }
     .img-wrapper {
-        width: 200px;
+        max-height: 150px;
+        max-width: 200px;
         img {
             width: 100%;
             object-fit: contain;
